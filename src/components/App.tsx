@@ -42,6 +42,7 @@ const App = ():ReactNode => {
                 if (index === existingCartItemIndex) {
                     return {
                         ...cartItem,
+                        sum: cartItem.sum + cartItem.cost,
                         number: cartItem.number + 1
                     };
                 }
@@ -55,6 +56,7 @@ const App = ():ReactNode => {
                 date: new Date().toLocaleString(),
                 description: item.description,
                 number: 1,
+                sum: item.cost,
             };
             setCartItems([...cartItems, newCartItem]);
         }
@@ -64,7 +66,8 @@ const App = ():ReactNode => {
     const deleteItemInCart = useCallback((event): void=> {
         const index:number = event.target.getAttribute('data-index') as number;
         if(cartItems[index].number > 1) {
-            cartItems[index].number -= 1
+            cartItems[index].number -= 1;
+            cartItems[index].sum -= cartItems[index].cost;
         } else {
             cartItems.splice(index, 1)
         }

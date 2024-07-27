@@ -14,6 +14,7 @@ export interface ICartItem {
     date: string,
     description?: string;
     number?: number
+    sum?: number;
 }
 
 export interface IMiniCardProps {
